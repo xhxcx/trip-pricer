@@ -21,6 +21,16 @@ public class TripPricerController {
     @Autowired
     private TripPricerService tripPricerService;
 
+    /**
+     * Endpoint to get a list of providers with their price
+     * @param apiKey
+     * @param attractionId
+     * @param adults
+     * @param children
+     * @param nightsStay
+     * @param rewardsPoints
+     * @return ResponseEntity and provider list as response content
+     */
     @GetMapping("/getPrice")
     public ResponseEntity<List<Provider>> getPrice(@RequestParam String apiKey, @RequestParam UUID attractionId,
                                                    @RequestParam int adults, @RequestParam int children,
@@ -30,6 +40,12 @@ public class TripPricerController {
         return new ResponseEntity<>(tripPricerService.getPrice(apiKey, attractionId, adults, children, nightsStay, rewardsPoints), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint to get a provider name
+     * @param apiKey
+     * @param adults
+     * @return ResponseEntity with provider name as response content
+     */
     @GetMapping("/getProviderName")
     public ResponseEntity<String> getProviderName(@RequestParam String apiKey, @RequestParam int adults) {
         LOGGER.info("GET /getProviderName apiKey = " + apiKey + ", adults = " + adults);

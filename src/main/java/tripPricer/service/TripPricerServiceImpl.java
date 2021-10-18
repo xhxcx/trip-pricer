@@ -1,6 +1,5 @@
 package tripPricer.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tripPricer.Provider;
 import tripPricer.TripPricer;
@@ -10,8 +9,11 @@ import java.util.UUID;
 
 @Service
 public class TripPricerServiceImpl implements TripPricerService {
-    @Autowired
-    private TripPricer tripPricer;
+    private final TripPricer tripPricer;
+
+    public TripPricerServiceImpl(TripPricer tripPricer){
+        this.tripPricer = tripPricer;
+    }
 
     @Override
     public List<Provider> getPrice(String apiKey, UUID attractionId, int adults, int children, int nightsStay, int rewardsPoints) {
